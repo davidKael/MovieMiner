@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace MovieMiner.SearchItems
+namespace MovieMiner
 {
     class Movie
     {

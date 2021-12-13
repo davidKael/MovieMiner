@@ -20,6 +20,7 @@ namespace MovieMiner
 
         private void btn_srch_Click(object sender, EventArgs e)
         {
+            
         }
     }
 }
