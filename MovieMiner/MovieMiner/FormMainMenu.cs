@@ -37,22 +37,12 @@ namespace MovieMiner
 
             if(movie != null) 
             {
-
-
-                rtb_SrchFindings.Text = $"Title: {movie.title} ({movie.release_date.Year})\n";
-                rtb_SrchFindings.Text += $"Genre: ";
-                foreach (Movie.Genres g in movie.genres)
+                ResetResultTextBox();
+               
+                foreach (string line in movie.GetAllInfo())
                 {
-                    rtb_SrchFindings.Text += $"{g.name} ";
+                    rtb_SrchFindings.Text += line + "\n";
                 }
-                rtb_SrchFindings.Text += "\n";
-                rtb_SrchFindings.Text += $"Runtime: {movie.runtime} min\n";
-                rtb_SrchFindings.Text += $"Overview: {movie.overview}\n\n";
-                rtb_SrchFindings.Text += $"Original Language: {movie.original_language}\n";
-                rtb_SrchFindings.Text += $"Rating: {movie.vote_average * 100}\n";
-                rtb_SrchFindings.Text += $"Released: {movie.release_date.ToShortDateString()}\n";
-                rtb_SrchFindings.Text += $"HomePage: {movie.homepage}\n";
-                rtb_SrchFindings.Text += $"PosterLink: https://www.themoviedb.org/t/p/w1280{movie.poster_path}\n";
 
 
 
@@ -65,6 +55,11 @@ namespace MovieMiner
 
 
             
+        }
+
+        void ResetResultTextBox()
+        {
+            rtb_SrchFindings.Text = "";
         }
     }
 }
