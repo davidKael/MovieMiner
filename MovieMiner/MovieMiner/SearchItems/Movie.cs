@@ -5,20 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace MovieMiner.SearchItems
+namespace MovieMiner
 {
     class Movie
     {
-        public int ID { get; set; }
-        public string PageUrl { get; set; }
-        public string PosterUrl { get; set; }
-        public string Title { get; set; }
-        public string[] AltTitles { get; set; }
-        public string Description { get; set; }
-        public int Duration { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public string[] Genres { get; set; }
-        public double Raiting { get; set; }
-        public string OriginalLanguage { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public DateTime release_date { get; set; }
+        public string overview { get; set; }
+        public Genres[] genres { get; set; }
+        public string original_language { get; set; }
+        public int runtime { get; set; }
+        public double vote_average { get; set; }
+        public string homepage { get; set; }
+        public string poster_path { get; set; }
+
+        public class Genres
+        {
+            public int id { set; get; }
+            public string name { set; get; }
+
+        }
+
+
     }
 }
