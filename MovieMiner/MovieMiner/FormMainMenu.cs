@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace MovieMiner
 {
-    public partial class Form1 : Form
+    public partial class FormMainMenu : Form
     {
-        public Form1()
+        public FormMainMenu()
         {
             InitializeComponent();
         }
 
+        private void btn_srch_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
