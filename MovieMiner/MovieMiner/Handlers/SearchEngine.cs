@@ -11,7 +11,7 @@ namespace MovieMiner
     static class SearchEngine
     {
         private static HttpClient client = new HttpClient();
-        private static string url = "https://www.themoviedb.org/";
+        private static string url = "https://api.themoviedb.org/";
         private static string key;
 
 
@@ -23,6 +23,25 @@ namespace MovieMiner
             key = Environment.GetEnvironmentVariable("API_KEY");
         }
         
+        internal static async Task<Movie> SearchMovieById(string id)
+        {
+            string uri = $@"{url}3/movie/{id}?api_key={key}";
+            var response = await client.GetAsync(uri);
+
+            try 
+            { 
+                response.EnsureSuccessStatusCode();
+            }
+            catch
+            {
+                return null;
+                //did not work
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            Movie movie = JsonConvert.DeserializeObject<Movie>(content);
+            return movie;
+        }
 
 
     }
