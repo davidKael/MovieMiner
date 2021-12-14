@@ -39,10 +39,10 @@ namespace MovieMiner
             }
 
             var content = await response.Content.ReadAsStringAsync();
-            Movie movie = JsonConvert.DeserializeObject<Movie>(content);
-            return movie;
+          
+            return JsonConvert.DeserializeObject<Movie>(content);
         }
-
+        
 
     }
 
