@@ -32,18 +32,14 @@ namespace MovieMiner
         }
         async Task Search(string input)
         {
-
+            /*
             Movie movie = await SearchEngine.SearchMovieById(input);
 
             if(movie != null) 
             {
                 ResetResultTextBox();
                
-                foreach (string line in movie.GetAllInfo())
-                {
-                    rtb_SrchFindings.Text += line + "\n";
-                }
-
+              PrintMovieValues(movie);
 
 
             }
@@ -52,9 +48,38 @@ namespace MovieMiner
                 rtb_SrchFindings.Text = "nothing found";
             }
             
+            */
+
+            SearchResults result = await SearchEngine.SearchMoviesByTitle(input);
+
+            if (result != null)
+            {
+                ResetResultTextBox();
+                rtb_SrchFindings.Text = $"Movies: {result.total_results.ToString()}\n";
+                foreach (Movie m in result.results)
+                {
+                    PrintMovieValues(m);
+                    rtb_SrchFindings.Text += "\n------------------------------------------------------\n";
+                }
+             
 
 
-            
+            }
+            else
+            {
+                rtb_SrchFindings.Text = "nothing found";
+            }
+
+
+        }
+
+
+        void PrintMovieValues(Movie movie)
+        {
+            foreach (string line in movie.GetAllInfo())
+            {
+                rtb_SrchFindings.Text += line + "\n";
+            }
         }
 
         void ResetResultTextBox()
