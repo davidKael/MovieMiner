@@ -55,11 +55,13 @@ namespace MovieMiner
             if (result != null)
             {
                 ResetResultTextBox();
-                rtb_SrchFindings.Text = $"Movies: {result.total_results.ToString()}\n";
+                rtb_SrchFindings.Text = $"Movies: {result.total_results.ToString()}\n\n";
+                rtb_SrchFindings.Text += "-----------------------------------------------------------------------------------------------\n";
                 foreach (Movie m in result.results)
                 {
+                    rtb_SrchFindings.Text += "\n";
                     PrintMovieValues(m);
-                    rtb_SrchFindings.Text += "\n------------------------------------------------------\n";
+                    rtb_SrchFindings.Text += "\n-----------------------------------------------------------------------------------------------\n";
                 }
              
 
