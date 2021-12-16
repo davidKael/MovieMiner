@@ -32,6 +32,7 @@ namespace MovieMiner
             this.tb_srchBox = new System.Windows.Forms.TextBox();
             this.btn_srch = new System.Windows.Forms.Button();
             this.rtb_SrchFindings = new System.Windows.Forms.RichTextBox();
+            this.cb_SrchType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // tb_srchBox
@@ -54,7 +55,7 @@ namespace MovieMiner
             this.btn_srch.ForeColor = System.Drawing.Color.Black;
             this.btn_srch.Location = new System.Drawing.Point(675, 12);
             this.btn_srch.Name = "btn_srch";
-            this.btn_srch.Size = new System.Drawing.Size(94, 29);
+            this.btn_srch.Size = new System.Drawing.Size(94, 28);
             this.btn_srch.TabIndex = 1;
             this.btn_srch.Text = "Search";
             this.btn_srch.UseVisualStyleBackColor = false;
@@ -76,12 +77,26 @@ namespace MovieMiner
             this.rtb_SrchFindings.TabIndex = 2;
             this.rtb_SrchFindings.Text = "";
             // 
+            // cb_SrchType
+            // 
+            this.cb_SrchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_SrchType.FormattingEnabled = true;
+            this.cb_SrchType.Items.AddRange(new object[] {
+            "by ID",
+            "by Title"});
+            this.cb_SrchType.Location = new System.Drawing.Point(775, 13);
+            this.cb_SrchType.Name = "cb_SrchType";
+            this.cb_SrchType.Size = new System.Drawing.Size(116, 28);
+            this.cb_SrchType.TabIndex = 3;
+            this.cb_SrchType.SelectedIndexChanged += new System.EventHandler(this.cb_SrchType_SelectedIndexChanged);
+            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1002, 564);
+            this.Controls.Add(this.cb_SrchType);
             this.Controls.Add(this.rtb_SrchFindings);
             this.Controls.Add(this.btn_srch);
             this.Controls.Add(this.tb_srchBox);
@@ -100,6 +115,7 @@ namespace MovieMiner
         private System.Windows.Forms.TextBox tb_srchBox;
         private System.Windows.Forms.Button btn_srch;
         private System.Windows.Forms.RichTextBox rtb_SrchFindings;
+        private System.Windows.Forms.ComboBox cb_SrchType;
     }
 }
 
