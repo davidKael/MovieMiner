@@ -13,6 +13,9 @@ namespace MovieMiner
 {
     public partial class FormMainMenu : Form
     {
+     
+
+
         public FormMainMenu()
         {
             InitializeComponent();
@@ -28,38 +31,79 @@ namespace MovieMiner
 
         private void FormMainMenu_Load(object sender, EventArgs e)
         {
-
+            cb_SrchType.SelectedIndex = 1;
         }
         async Task Search(string input)
         {
-
-            Movie movie = await SearchEngine.SearchMovieById(input);
-
-            if(movie != null) 
+            if(cb_SrchType.SelectedIndex == 0)
             {
-                ResetResultTextBox();
-               
-                foreach (string line in movie.GetAllInfo())
+                Movie movie = await SearchEngine.SearchMovieById(input);
+
+                if (movie != null)
                 {
-                    rtb_SrchFindings.Text += line + "\n";
+                    ResetResultTextBox();
+
+                    PrintMovieValues(movie);
+
+
+                }
+                else
+                {
+                    rtb_SrchFindings.Text = "nothing found";
                 }
 
-
-
             }
+
             else
             {
-                rtb_SrchFindings.Text = "nothing found";
+                SearchResults result = await SearchEngine.SearchMoviesByTitle(input);
+
+                if (result != null)
+                {
+                    ResetResultTextBox();
+                    rtb_SrchFindings.Text = $"Movies: {result.total_results.ToString()}\n\n";
+                    rtb_SrchFindings.Text += "-----------------------------------------------------------------------------------------------\n";
+
+                    foreach (Movie m in result.results)
+                    {
+                        rtb_SrchFindings.Text += "\n";
+                        PrintMovieValues(m);
+                        rtb_SrchFindings.Text += "\n-----------------------------------------------------------------------------------------------\n";
+                    }
+
+
+
+                }
+                else
+                {
+                    rtb_SrchFindings.Text = "nothing found";
+                }
+
             }
-            
 
 
-            
+
+
+
+        }
+
+
+        void PrintMovieValues(Movie movie)
+        {
+            foreach (string line in movie.GetAllInfo())
+            {
+                rtb_SrchFindings.Text += line + "\n";
+            }
         }
 
         void ResetResultTextBox()
         {
             rtb_SrchFindings.Text = "";
+        }
+
+        private void cb_SrchType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
