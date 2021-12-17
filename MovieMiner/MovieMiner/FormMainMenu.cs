@@ -13,9 +13,6 @@ namespace MovieMiner
 {
     public partial class FormMainMenu : Form
     {
-     
-
-
         public FormMainMenu()
         {
             InitializeComponent();
@@ -23,86 +20,132 @@ namespace MovieMiner
 
         private void btn_srch_Click(object sender, EventArgs e)
         {
-           if(tb_srchBox.Text.Length > 0)
-           {
-                _=Search(tb_srchBox.Text);
-           }
+           _=Search(tb_srchBox.Text);
         }
 
         private void FormMainMenu_Load(object sender, EventArgs e)
         {
             cb_SrchType.SelectedIndex = 1;
         }
+
         async Task Search(string input)
         {
-            if(cb_SrchType.SelectedIndex == 0)
+            if (!string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input))
             {
-                Movie movie = await SearchEngine.SearchMovieById(input);
-
-                if (movie != null)
+                switch (cb_SrchType.SelectedIndex)
                 {
-                    ResetResultTextBox();
+                    case 0:
+                        Movie movie = await SearchEngine.SearchMovieById(input);
 
-                    PrintMovieValues(movie);
+                        if (movie != null)
+                        {
+                            ResetResultTextBox();
+
+                            PrintMovieValues(movie);
+                            
+
+                        }
+                        else
+                        {
+                            rtb_SrchFindings.Text = "Nothing found...";
+                        }
+                        break;
+
+                    case 1:
+
+                        SearchResults result = await SearchEngine.SearchMoviesByTitle(input);
+
+                        if (result != null && result.results.Count > 0)
+                        {
+                            /*
 
 
+                             ResetResultTextBox();
+                             rtb_SrchFindings.Text = $"Movies: {result.total_results.ToString()}\n\n";
+                             rtb_SrchFindings.Text += "-----------------------------------------------------------------------------------------------\n";
+
+                             foreach (Movie m in result.results)
+                             {
+                                 rtb_SrchFindings.Text += "\n";
+                                 PrintMovieValues(m);
+                                 rtb_SrchFindings.Text += "\n-----------------------------------------------------------------------------------------------\n";
+                             }
+
+                             */
+                            ResetResultTextBox();
+
+                           foreach(Movie m in result.results)
+                            {
+                            
+
+                                dataGrid_srchResults.Rows.Add(new object[] {m.id, m.title, m.release_date });
+
+                            }
+                            
+
+
+                        }
+                        else
+                        {
+                            rtb_SrchFindings.Text = "Nothing found...";
+                        }
+                        break;
+
+                    default:
+                        rtb_SrchFindings.Text = "Search metod not chosen...";
+                        break;
                 }
-                else
-                {
-                    rtb_SrchFindings.Text = "nothing found";
-                }
-
             }
 
             else
             {
-                SearchResults result = await SearchEngine.SearchMoviesByTitle(input);
-
-                if (result != null)
-                {
-                    ResetResultTextBox();
-                    rtb_SrchFindings.Text = $"Movies: {result.total_results.ToString()}\n\n";
-                    rtb_SrchFindings.Text += "-----------------------------------------------------------------------------------------------\n";
-
-                    foreach (Movie m in result.results)
-                    {
-                        rtb_SrchFindings.Text += "\n";
-                        PrintMovieValues(m);
-                        rtb_SrchFindings.Text += "\n-----------------------------------------------------------------------------------------------\n";
-                    }
-
-
-
-                }
-                else
-                {
-                    rtb_SrchFindings.Text = "nothing found";
-                }
-
+                rtb_SrchFindings.Text = "Nothing found...";
             }
-
-
 
 
 
         }
 
+        async Task DisplaySelectedMovie(string id)
+        {
+            Movie movie = await SearchEngine.SearchMovieById(id);
+            PrintMovieValues(movie);
+        }
 
         void PrintMovieValues(Movie movie)
         {
+            rtb_SrchFindings.Text = "";
+            pctrBox_poster.ImageLocation = $"https://www.themoviedb.org/t/p/w1280{movie.poster_path}";
             foreach (string line in movie.GetAllInfo())
             {
+                
                 rtb_SrchFindings.Text += line + "\n";
             }
         }
 
         void ResetResultTextBox()
         {
-            rtb_SrchFindings.Text = "";
+            //rtb_SrchFindings.Text = "";
+            dataGrid_srchResults.Rows.Clear();
+
         }
 
         private void cb_SrchType_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+             string selected = dataGrid_srchResults.SelectedRows[0].Cells["ID"].Value.ToString();
+
+            _ =DisplaySelectedMovie(selected);
+
 
         }
     }
