@@ -3,8 +3,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
-
+using System.Net;
 
 namespace MovieMiner
 {
@@ -63,6 +62,8 @@ namespace MovieMiner
             SearchResults searchResult = JsonConvert.DeserializeObject<SearchResults>(content);
             return searchResult;
         }
+
+
     }
 
 }

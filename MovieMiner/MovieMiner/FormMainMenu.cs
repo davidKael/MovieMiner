@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace MovieMiner
 {
     public partial class FormMainMenu : Form
     {
+        Dictionary<int, Image> images = new();
+
         public FormMainMenu()
         {
             InitializeComponent();
@@ -42,6 +45,8 @@ namespace MovieMiner
                             ResetResultTextBox();
 
                             PrintMovieValues(movie);
+                            images.Clear();
+                            _=LoadImage(movie);
                             
 
                         }
@@ -73,16 +78,18 @@ namespace MovieMiner
 
                              */
                             ResetResultTextBox();
-
-                           foreach(Movie m in result.results)
+                            images.Clear();
+                            foreach (Movie m in result.results)
                             {
-                            
 
+                               
+                                _ = LoadImage(m);
                                 dataGrid_srchResults.Rows.Add(new object[] {m.id, m.title, m.release_date });
 
-                            }
-                            
 
+                            }
+
+                            dataGrid_srchResults.ClearSelection();
 
                         }
                         else
@@ -115,7 +122,11 @@ namespace MovieMiner
         void PrintMovieValues(Movie movie)
         {
             rtb_SrchFindings.Text = "";
-            pctrBox_poster.ImageLocation = $"https://www.themoviedb.org/t/p/w1280{movie.poster_path}";
+            //pctrBox_poster.ImageLocation = $"https://www.themoviedb.org/t/p/w1280{movie.poster_path}";
+
+
+
+
             foreach (string line in movie.GetAllInfo())
             {
                 
@@ -144,9 +155,33 @@ namespace MovieMiner
         {
              string selected = dataGrid_srchResults.SelectedRows[0].Cells["ID"].Value.ToString();
 
+            if (images.TryGetValue(Convert.ToInt32(selected), out Image image))
+            {
+                pctrBox_poster.Image = image;
+            }
+            else
+            {
+                pctrBox_poster.Image = null;
+            }
+
             _ =DisplaySelectedMovie(selected);
 
+            
 
+        }
+
+        internal async Task LoadImage(Movie m)
+        {
+            WebRequest request = WebRequest.Create($"https://www.themoviedb.org/t/p/w1280{m.poster_path}");
+            
+            using (var response = request.GetResponse())
+            {
+                using (var str = response.GetResponseStream())
+                {
+                    images.Add(m.id, Bitmap.FromStream(str));
+                }
+
+            }
         }
     }
 }
