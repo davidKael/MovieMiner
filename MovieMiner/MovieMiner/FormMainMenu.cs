@@ -46,7 +46,7 @@ namespace MovieMiner
 
                             PrintMovieValues(movie);
                             images.Clear();
-                            _=LoadImage(movie);
+                            LoadImage(movie);
                             
 
                         }
@@ -83,7 +83,7 @@ namespace MovieMiner
                             {
 
                                
-                                _ = LoadImage(m);
+                                LoadImage(m);
                                 dataGrid_srchResults.Rows.Add(new object[] {m.id, m.title, m.release_date });
 
 
@@ -161,7 +161,7 @@ namespace MovieMiner
             }
             else
             {
-                pctrBox_poster.Image = null;
+                pctrBox_poster.Image = pctrBox_poster.ErrorImage;
             }
 
             _ =DisplaySelectedMovie(selected);
@@ -170,7 +170,7 @@ namespace MovieMiner
 
         }
 
-        internal async Task LoadImage(Movie m)
+        internal void LoadImage(Movie m)
         {
             WebRequest request = WebRequest.Create($"https://www.themoviedb.org/t/p/w1280{m.poster_path}");
             
@@ -182,6 +182,11 @@ namespace MovieMiner
                 }
 
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
