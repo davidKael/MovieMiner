@@ -46,7 +46,7 @@ namespace MovieMiner
 
                             PrintMovieValues(movie);
                             images.Clear();
-                            LoadImage(movie);
+                           _= LoadImage(movie);
                             
 
                         }
@@ -78,18 +78,20 @@ namespace MovieMiner
 
                              */
                             ResetResultTextBox();
+                            rtb_SrchFindings.Text = $"Movies found: {result.total_results}";
                             images.Clear();
                             foreach (Movie m in result.results)
                             {
 
                                
-                                LoadImage(m);
+                                _=LoadImage(m);
                                 dataGrid_srchResults.Rows.Add(new object[] {m.id, m.title, m.release_date });
 
 
                             }
 
                             dataGrid_srchResults.ClearSelection();
+                            
 
                         }
                         else
@@ -170,7 +172,7 @@ namespace MovieMiner
 
         }
 
-        internal void LoadImage(Movie m)
+        internal async Task LoadImage(Movie m)
         {
             WebRequest request = WebRequest.Create($"https://www.themoviedb.org/t/p/w1280{m.poster_path}");
             
