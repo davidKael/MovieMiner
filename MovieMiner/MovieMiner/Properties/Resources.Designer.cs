@@ -59,5 +59,25 @@ namespace MovieMiner.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap film_reel_g0dd6691b2_1280 {
+            get {
+                object obj = ResourceManager.GetObject("film-reel-g0dd6691b2_1280", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap theatre_g3117f58f5_1920 {
+            get {
+                object obj = ResourceManager.GetObject("theatre-g3117f58f5_1920", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

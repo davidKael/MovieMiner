@@ -46,7 +46,7 @@ namespace MovieMiner
 
                             PrintMovieValues(movie);
                             images.Clear();
-                            _=LoadImage(movie);
+                           _= LoadImage(movie);
                             
 
                         }
@@ -78,18 +78,20 @@ namespace MovieMiner
 
                              */
                             ResetResultTextBox();
+                            rtb_SrchFindings.Text = $"Movies found: {result.total_results}";
                             images.Clear();
                             foreach (Movie m in result.results)
                             {
 
                                
-                                _ = LoadImage(m);
+                                _=LoadImage(m);
                                 dataGrid_srchResults.Rows.Add(new object[] {m.id, m.title, m.release_date });
 
 
                             }
 
                             dataGrid_srchResults.ClearSelection();
+                            
 
                         }
                         else
@@ -161,7 +163,7 @@ namespace MovieMiner
             }
             else
             {
-                pctrBox_poster.Image = null;
+                pctrBox_poster.Image = pctrBox_poster.ErrorImage;
             }
 
             _ =DisplaySelectedMovie(selected);
@@ -182,6 +184,11 @@ namespace MovieMiner
                 }
 
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
