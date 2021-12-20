@@ -17,8 +17,9 @@ namespace MovieMiner
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SearchEngine.GetKey();
-            Application.Run(new FormMainMenu());
+
+            FormHandler.RunForms();
+
             
 
         }

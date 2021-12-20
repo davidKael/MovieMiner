@@ -29,9 +29,9 @@ namespace MovieMiner
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tb_srchBox = new System.Windows.Forms.TextBox();
             this.btn_srch = new System.Windows.Forms.Button();
             this.cb_SrchType = new System.Windows.Forms.ComboBox();
@@ -74,7 +74,7 @@ namespace MovieMiner
             this.tb_srchBox.ForeColor = System.Drawing.Color.White;
             this.tb_srchBox.Location = new System.Drawing.Point(3, 5);
             this.tb_srchBox.Name = "tb_srchBox";
-            this.tb_srchBox.Size = new System.Drawing.Size(776, 27);
+            this.tb_srchBox.Size = new System.Drawing.Size(963, 27);
             this.tb_srchBox.TabIndex = 0;
             // 
             // btn_srch
@@ -86,7 +86,7 @@ namespace MovieMiner
             this.btn_srch.FlatAppearance.BorderSize = 0;
             this.btn_srch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_srch.ForeColor = System.Drawing.Color.Black;
-            this.btn_srch.Location = new System.Drawing.Point(782, 3);
+            this.btn_srch.Location = new System.Drawing.Point(969, 3);
             this.btn_srch.Name = "btn_srch";
             this.btn_srch.Size = new System.Drawing.Size(94, 28);
             this.btn_srch.TabIndex = 1;
@@ -102,7 +102,7 @@ namespace MovieMiner
             this.cb_SrchType.Items.AddRange(new object[] {
             "by ID",
             "by Title"});
-            this.cb_SrchType.Location = new System.Drawing.Point(882, 4);
+            this.cb_SrchType.Location = new System.Drawing.Point(1069, 4);
             this.cb_SrchType.Name = "cb_SrchType";
             this.cb_SrchType.Size = new System.Drawing.Size(116, 28);
             this.cb_SrchType.TabIndex = 3;
@@ -133,28 +133,28 @@ namespace MovieMiner
             this.dataGrid_srchResults.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid_srchResults.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGrid_srchResults.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_srchResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_srchResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGrid_srchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_srchResults.ColumnHeadersVisible = false;
             this.dataGrid_srchResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Title,
             this.Year});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGrid_srchResults.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGrid_srchResults.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGrid_srchResults.EnableHeadersVisualStyles = false;
             this.dataGrid_srchResults.Location = new System.Drawing.Point(0, 0);
             this.dataGrid_srchResults.MultiSelect = false;
@@ -163,18 +163,18 @@ namespace MovieMiner
             this.dataGrid_srchResults.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGrid_srchResults.RowHeadersVisible = false;
             this.dataGrid_srchResults.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_srchResults.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_srchResults.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGrid_srchResults.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
             this.dataGrid_srchResults.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.dataGrid_srchResults.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGrid_srchResults.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGrid_srchResults.RowTemplate.Height = 29;
             this.dataGrid_srchResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGrid_srchResults.Size = new System.Drawing.Size(322, 471);
+            this.dataGrid_srchResults.Size = new System.Drawing.Size(398, 471);
             this.dataGrid_srchResults.TabIndex = 5;
             this.dataGrid_srchResults.Visible = false;
             this.dataGrid_srchResults.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -226,6 +226,7 @@ namespace MovieMiner
             // 
             // panel_movieData
             // 
+            this.panel_movieData.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel_movieData.BackColor = System.Drawing.Color.Transparent;
             this.panel_movieData.Controls.Add(this.link_poster);
             this.panel_movieData.Controls.Add(this.link_homepage);
@@ -353,7 +354,7 @@ namespace MovieMiner
             // 
             // label_searchResultMessage
             // 
-            this.label_searchResultMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_searchResultMessage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label_searchResultMessage.BackColor = System.Drawing.Color.Transparent;
             this.label_searchResultMessage.ForeColor = System.Drawing.Color.White;
             this.label_searchResultMessage.Location = new System.Drawing.Point(795, 186);
@@ -364,21 +365,19 @@ namespace MovieMiner
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.BackColor = System.Drawing.Color.DarkGray;
             this.panel2.Controls.Add(this.tb_srchBox);
             this.panel2.Controls.Add(this.btn_srch);
             this.panel2.Controls.Add(this.cb_SrchType);
-            this.panel2.Location = new System.Drawing.Point(119, 148);
+            this.panel2.Location = new System.Drawing.Point(15, 148);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1001, 35);
+            this.panel2.Size = new System.Drawing.Size(1188, 35);
             this.panel2.TabIndex = 8;
             // 
             // panel_results
             // 
-            this.panel_results.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_results.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel_results.BackColor = System.Drawing.Color.Transparent;
             this.panel_results.Controls.Add(this.label_pageCount);
             this.panel_results.Controls.Add(this.btn_prvsPage);
@@ -387,7 +386,7 @@ namespace MovieMiner
             this.panel_results.Location = new System.Drawing.Point(795, 214);
             this.panel_results.Name = "panel_results";
             this.panel_results.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel_results.Size = new System.Drawing.Size(322, 531);
+            this.panel_results.Size = new System.Drawing.Size(398, 531);
             this.panel_results.TabIndex = 9;
             // 
             // label_pageCount
@@ -398,7 +397,7 @@ namespace MovieMiner
             this.label_pageCount.ForeColor = System.Drawing.Color.White;
             this.label_pageCount.Location = new System.Drawing.Point(103, 474);
             this.label_pageCount.Name = "label_pageCount";
-            this.label_pageCount.Size = new System.Drawing.Size(115, 57);
+            this.label_pageCount.Size = new System.Drawing.Size(191, 57);
             this.label_pageCount.TabIndex = 8;
             this.label_pageCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -420,7 +419,7 @@ namespace MovieMiner
             this.btn_nxtPage.BackColor = System.Drawing.Color.Transparent;
             this.btn_nxtPage.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_nxtPage.ForeColor = System.Drawing.Color.Black;
-            this.btn_nxtPage.Location = new System.Drawing.Point(224, 477);
+            this.btn_nxtPage.Location = new System.Drawing.Point(300, 477);
             this.btn_nxtPage.Name = "btn_nxtPage";
             this.btn_nxtPage.Size = new System.Drawing.Size(94, 29);
             this.btn_nxtPage.TabIndex = 6;
@@ -431,8 +430,7 @@ namespace MovieMiner
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Bauhaus 93", 65F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -461,7 +459,10 @@ namespace MovieMiner
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormMainMenu";
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movie Miner - Main Menu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMainMenu_FormClosed);
             this.Load += new System.EventHandler(this.FormMainMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctrBox_poster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_srchResults)).EndInit();
@@ -492,15 +493,15 @@ namespace MovieMiner
         private System.Windows.Forms.Label label_Runtime;
         private System.Windows.Forms.Label label_searchResultMessage;
         private System.Windows.Forms.RichTextBox rtb_overview;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel link_poster;
         private System.Windows.Forms.LinkLabel link_homepage;
         private System.Windows.Forms.Button btn_prvsPage;
         private System.Windows.Forms.Button btn_nxtPage;
         private System.Windows.Forms.Label label_pageCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
     }
 }
 
