@@ -77,6 +77,17 @@ namespace MovieMiner
                        
                         SearchResults result = await SearchEngine.SearchMoviesByTitle(input, 1);
                         
+                        if(result == null)
+                        {
+
+                            //label_searchResultMessage.Text = "Api-key is invalid...";
+                            FormHandler.nextForm = "FormEnterAPI";
+                            Close();
+
+                            return;
+
+                        }
+
                         if(result.page < result.total_pages)
                         {
                             btn_nxtPage.Visible = true;
@@ -148,6 +159,7 @@ namespace MovieMiner
 
                 foreach (Movie m in result.results)
                 {
+                    
                     dataGrid_srchResults.Rows.Add(new object[] { m.id, m.title, m.release_date });
                 }
 
@@ -175,18 +187,24 @@ namespace MovieMiner
         void PrintMovieValues(Movie movie)
         {
             string genre = "";
-
-            for(int i = 0; i < movie.genres.Length; i++)
+            if (movie.genres.Length > 0)
             {
-                genre += movie.genres[i].name;
-
-                if (i != movie.genres.Length - 1)
+                for (int i = 0; i < movie.genres.Length; i++)
                 {
-                    genre += ", ";
-                }
-  
-                
+                    genre += movie.genres[i].name;
 
+                    if (i != movie.genres.Length - 1)
+                    {
+                        genre += ", ";
+                    }
+
+
+
+                }
+            }
+            else
+            {
+                genre = "(Unknown)";
             }
 
             pctrBox_poster.Image = movie.poster_image != null ? movie.poster_image : pctrBox_poster.ErrorImage;
@@ -268,6 +286,11 @@ namespace MovieMiner
         private void btn_nxtPage_Click(object sender, EventArgs e)
         {
             _=TurnPage(SearchResults.CurrPage + 1);
+        }
+
+        private void FormMainMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

@@ -14,13 +14,29 @@ namespace MovieMiner
         private static string url = "https://api.themoviedb.org/";
         private static string key;
         
-        
+        public static bool TryKey(string newKey)
+        {
+            if (!string.IsNullOrEmpty(newKey) || !string.IsNullOrWhiteSpace(newKey))
+            {
+
+                key = newKey;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+
+        }
 
 
-        internal static void GetKey()
+        internal static bool GetKey()
         {
             DotNetEnv.Env.TraversePath().Load();
             key = Environment.GetEnvironmentVariable("API_KEY");
+
+            return key != null;
         }
         
         internal static async Task<Movie> SearchMovieById(int id)
