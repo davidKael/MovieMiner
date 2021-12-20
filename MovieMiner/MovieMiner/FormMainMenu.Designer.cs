@@ -215,11 +215,11 @@ namespace MovieMiner
             this.label_Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Title.BackColor = System.Drawing.Color.Transparent;
-            this.label_Title.Font = new System.Drawing.Font("Segoe UI", 25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label_Title.Font = new System.Drawing.Font("Segoe UI", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
             this.label_Title.ForeColor = System.Drawing.Color.White;
             this.label_Title.Location = new System.Drawing.Point(12, 0);
             this.label_Title.Name = "label_Title";
-            this.label_Title.Size = new System.Drawing.Size(744, 59);
+            this.label_Title.Size = new System.Drawing.Size(762, 57);
             this.label_Title.TabIndex = 6;
             this.label_Title.Text = "Title";
             this.label_Title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -392,13 +392,15 @@ namespace MovieMiner
             // 
             // label_pageCount
             // 
+            this.label_pageCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label_pageCount.BackColor = System.Drawing.Color.Transparent;
             this.label_pageCount.ForeColor = System.Drawing.Color.White;
-            this.label_pageCount.Location = new System.Drawing.Point(103, 477);
+            this.label_pageCount.Location = new System.Drawing.Point(103, 474);
             this.label_pageCount.Name = "label_pageCount";
-            this.label_pageCount.Size = new System.Drawing.Size(115, 39);
+            this.label_pageCount.Size = new System.Drawing.Size(115, 57);
             this.label_pageCount.TabIndex = 8;
-            this.label_pageCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_pageCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btn_prvsPage
             // 

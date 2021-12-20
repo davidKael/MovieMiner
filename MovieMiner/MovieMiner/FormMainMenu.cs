@@ -76,7 +76,7 @@ namespace MovieMiner
                     case 1:
                        
                         SearchResults result = await SearchEngine.SearchMoviesByTitle(input, 1);
-                        label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
+                        
                         if(result.page < result.total_pages)
                         {
                             btn_nxtPage.Visible = true;
@@ -88,7 +88,7 @@ namespace MovieMiner
 
                         if (result != null && result.results.Count > 0)
                         {
-
+                            label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
                             ResetResultTextBox();
 
 
@@ -174,10 +174,26 @@ namespace MovieMiner
 
         void PrintMovieValues(Movie movie)
         {
+            string genre = "";
+
+            for(int i = 0; i < movie.genres.Length; i++)
+            {
+                genre += movie.genres[i].name;
+
+                if (i != movie.genres.Length - 1)
+                {
+                    genre += ", ";
+                }
+  
+                
+
+            }
+
             pctrBox_poster.Image = movie.poster_image != null ? movie.poster_image : pctrBox_poster.ErrorImage;
             label_Title.Text = $"{movie.title}";
             label_rating.Text = $"Rating: {(movie.vote_count > 0 ? $"{movie.vote_average}%" : "(NR)")}";
             label_ReleaseDate.Text = $"Release date: {(movie.release_date.Length != 0 ? $"{movie.release_date} ({movie.status})" : "(Unknown)")}";
+            label_Genres.Text = $"Genres: {genre}";
             label_Runtime.Text = $"Runtime: {(movie.runtime > 0 ? $"{movie.runtime} min" : "(Unknown)")}";
             label_orgLanguage.Text = $"Original language: {movie.original_language}";
             link_homepage.Text = $"Homepage: {movie.homepage}";
