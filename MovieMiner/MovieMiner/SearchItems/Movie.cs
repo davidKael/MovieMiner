@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace MovieMiner
 {
-    class Movie
+    internal class Movie
     {
         public static Dictionary<int, Movie> All = new();
 
@@ -32,7 +28,6 @@ namespace MovieMiner
         {
             public int id { set; get; }
             public string name { set; get; }
-
         }
 
         public void AddToDictionary()
@@ -42,6 +37,5 @@ namespace MovieMiner
                 All.Add(this.id, this);
             }
         }
-       
     }
 }
