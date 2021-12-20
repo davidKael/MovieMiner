@@ -57,9 +57,11 @@ namespace MovieMiner
           
         }
         
-        internal static async Task<SearchResults> SearchMoviesByTitle(string input)
+        internal static async Task<SearchResults> SearchMoviesByTitle(string input, int page)
         {
-            string uri = $@"{url}3/search/movie?api_key={key}&language=en-US&query={input}&page=1&include_adult=false";
+            SearchResults.CurrSearchWord = input;
+
+            string uri = $@"{url}3/search/movie?api_key={key}&language=en-US&query={input}&page={page}&include_adult=false";
             var response = await client.GetAsync(uri);
 
             try
@@ -81,7 +83,8 @@ namespace MovieMiner
             {
                 movie.AddToDictionary();
             }
-           
+
+            SearchResults.CurrPage = page;
             return results;
         }
 
