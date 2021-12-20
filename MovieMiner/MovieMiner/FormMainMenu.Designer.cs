@@ -42,6 +42,8 @@ namespace MovieMiner
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_Title = new System.Windows.Forms.Label();
             this.panel_movieData = new System.Windows.Forms.Panel();
+            this.link_poster = new System.Windows.Forms.LinkLabel();
+            this.link_homepage = new System.Windows.Forms.LinkLabel();
             this.rtb_overview = new System.Windows.Forms.RichTextBox();
             this.label_orgLanguage = new System.Windows.Forms.Label();
             this.label_rating = new System.Windows.Forms.Label();
@@ -51,6 +53,9 @@ namespace MovieMiner
             this.label_searchResultMessage = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_results = new System.Windows.Forms.Panel();
+            this.label_pageCount = new System.Windows.Forms.Label();
+            this.btn_prvsPage = new System.Windows.Forms.Button();
+            this.btn_nxtPage = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pctrBox_poster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_srchResults)).BeginInit();
@@ -222,6 +227,8 @@ namespace MovieMiner
             // panel_movieData
             // 
             this.panel_movieData.BackColor = System.Drawing.Color.Transparent;
+            this.panel_movieData.Controls.Add(this.link_poster);
+            this.panel_movieData.Controls.Add(this.link_homepage);
             this.panel_movieData.Controls.Add(this.rtb_overview);
             this.panel_movieData.Controls.Add(this.label_orgLanguage);
             this.panel_movieData.Controls.Add(this.label_rating);
@@ -236,6 +243,32 @@ namespace MovieMiner
             this.panel_movieData.Size = new System.Drawing.Size(777, 475);
             this.panel_movieData.TabIndex = 7;
             this.panel_movieData.Visible = false;
+            // 
+            // link_poster
+            // 
+            this.link_poster.AutoEllipsis = true;
+            this.link_poster.ForeColor = System.Drawing.Color.White;
+            this.link_poster.LinkArea = new System.Windows.Forms.LinkArea(8, 100);
+            this.link_poster.Location = new System.Drawing.Point(297, 212);
+            this.link_poster.Name = "link_poster";
+            this.link_poster.Size = new System.Drawing.Size(459, 25);
+            this.link_poster.TabIndex = 17;
+            this.link_poster.TabStop = true;
+            this.link_poster.Text = "Poster: https://www.youtube.com/";
+            this.link_poster.UseCompatibleTextRendering = true;
+            // 
+            // link_homepage
+            // 
+            this.link_homepage.AutoEllipsis = true;
+            this.link_homepage.ForeColor = System.Drawing.Color.White;
+            this.link_homepage.LinkArea = new System.Windows.Forms.LinkArea(10, 100);
+            this.link_homepage.Location = new System.Drawing.Point(297, 187);
+            this.link_homepage.Name = "link_homepage";
+            this.link_homepage.Size = new System.Drawing.Size(459, 25);
+            this.link_homepage.TabIndex = 16;
+            this.link_homepage.TabStop = true;
+            this.link_homepage.Text = "Homepage: www.hej.com";
+            this.link_homepage.UseCompatibleTextRendering = true;
             // 
             // rtb_overview
             // 
@@ -347,12 +380,51 @@ namespace MovieMiner
             this.panel_results.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_results.BackColor = System.Drawing.Color.Transparent;
+            this.panel_results.Controls.Add(this.label_pageCount);
+            this.panel_results.Controls.Add(this.btn_prvsPage);
+            this.panel_results.Controls.Add(this.btn_nxtPage);
             this.panel_results.Controls.Add(this.dataGrid_srchResults);
             this.panel_results.Location = new System.Drawing.Point(795, 214);
             this.panel_results.Name = "panel_results";
             this.panel_results.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel_results.Size = new System.Drawing.Size(322, 510);
+            this.panel_results.Size = new System.Drawing.Size(322, 531);
             this.panel_results.TabIndex = 9;
+            // 
+            // label_pageCount
+            // 
+            this.label_pageCount.BackColor = System.Drawing.Color.Transparent;
+            this.label_pageCount.ForeColor = System.Drawing.Color.White;
+            this.label_pageCount.Location = new System.Drawing.Point(103, 477);
+            this.label_pageCount.Name = "label_pageCount";
+            this.label_pageCount.Size = new System.Drawing.Size(115, 39);
+            this.label_pageCount.TabIndex = 8;
+            this.label_pageCount.Text = "Page 123\r\nof 1233";
+            this.label_pageCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btn_prvsPage
+            // 
+            this.btn_prvsPage.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_prvsPage.Location = new System.Drawing.Point(3, 477);
+            this.btn_prvsPage.Name = "btn_prvsPage";
+            this.btn_prvsPage.Size = new System.Drawing.Size(94, 29);
+            this.btn_prvsPage.TabIndex = 7;
+            this.btn_prvsPage.Text = "Previous Page";
+            this.btn_prvsPage.UseVisualStyleBackColor = true;
+            this.btn_prvsPage.Click += new System.EventHandler(this.btn_prvsPage_Click);
+            // 
+            // btn_nxtPage
+            // 
+            this.btn_nxtPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_nxtPage.BackColor = System.Drawing.Color.Transparent;
+            this.btn_nxtPage.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_nxtPage.ForeColor = System.Drawing.Color.Black;
+            this.btn_nxtPage.Location = new System.Drawing.Point(224, 477);
+            this.btn_nxtPage.Name = "btn_nxtPage";
+            this.btn_nxtPage.Size = new System.Drawing.Size(94, 29);
+            this.btn_nxtPage.TabIndex = 6;
+            this.btn_nxtPage.Text = "Next Page";
+            this.btn_nxtPage.UseVisualStyleBackColor = false;
+            this.btn_nxtPage.Click += new System.EventHandler(this.btn_nxtPage_Click);
             // 
             // label1
             // 
@@ -421,6 +493,11 @@ namespace MovieMiner
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel link_poster;
+        private System.Windows.Forms.LinkLabel link_homepage;
+        private System.Windows.Forms.Button btn_prvsPage;
+        private System.Windows.Forms.Button btn_nxtPage;
+        private System.Windows.Forms.Label label_pageCount;
     }
 }
 

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net;
+
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +14,7 @@ namespace MovieMiner
 {
     public partial class FormMainMenu : Form
     {
-        Dictionary<int, Image> images = new();
+
 
         public FormMainMenu()
         {
@@ -34,6 +34,10 @@ namespace MovieMiner
         async Task Search(string input)
         {
             dataGrid_srchResults.Visible = false;
+            panel_movieData.Visible = false;
+            btn_nxtPage.Visible = false;
+            btn_prvsPage.Visible = false;
+            label_pageCount.Text = "";
             label_searchResultMessage.Text = "Searching...";
 
             if (!string.IsNullOrEmpty(input) && !string.IsNullOrWhiteSpace(input))
@@ -41,115 +45,113 @@ namespace MovieMiner
                 switch (cb_SrchType.SelectedIndex)
                 {
                     case 0:
-                        Movie movie = await SearchEngine.SearchMovieById(input);
-
-                        if (movie != null)
+                        if(int.TryParse(input, out int id))
                         {
-                            ResetResultTextBox();
+                            Movie movie = await SearchEngine.SearchMovieById(id);
 
-                            PrintMovieValues(movie);
-                            images.Clear();
-                           _= LoadImage(movie);
+                            if (movie != null)
+                            {
+                                ResetResultTextBox();
+                                await DisplaySelectedMovie(movie.id);
+
+                                label_searchResultMessage.Text = "";
+                                return;
+
+
+                            }
+                            else
+                            {
+                                label_searchResultMessage.Text = "Nothing found...";
                             
-
+                            }
                         }
                         else
                         {
-                            label_searchResultMessage.Text = "Nothing found...";
+                            label_searchResultMessage.Text = "ID Invalid";
+
                         }
+
                         break;
 
                     case 1:
-                        panel_movieData.Visible = false;
+                       
                         SearchResults result = await SearchEngine.SearchMoviesByTitle(input);
-
+                        label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
                         if (result != null && result.results.Count > 0)
                         {
 
                             ResetResultTextBox();
 
 
-                            images.Clear();
+
                             foreach (Movie m in result.results)
                             {
-
-
-                                _ = LoadImage(m);
                                 dataGrid_srchResults.Rows.Add(new object[] { m.id, m.title, m.release_date });
-
-
                             }
 
-                            await DisplaySelectedMovie(result.results[0].id.ToString());
+                            await DisplaySelectedMovie(result.results[0].id);
                             dataGrid_srchResults.Visible = true;
                             label_searchResultMessage.Text = $"{result.total_results} movies found.";
 
-
+                            return;
 
                         }
                         else
                         {
                             label_searchResultMessage.Text = "Nothing found..";
-                            panel_movieData.Visible = false;
-                            dataGrid_srchResults.Visible = false;
+
                         }
                         break;
 
                     default:
                         label_searchResultMessage.Text = "Search metod not chosen...";
-                        panel_movieData.Visible = false;
-                        dataGrid_srchResults.Visible = false;
+
+
                         break;
+
                 }
             }
 
             else
             {
                 label_searchResultMessage.Text = "Nothing found...";
-                panel_movieData.Visible = false;
-                dataGrid_srchResults.Visible = false;
+
             }
-
-
 
         }
 
-        async Task DisplaySelectedMovie(string id)
+        async Task DisplaySelectedMovie(int id)
         {
-            Movie movie = await SearchEngine.SearchMovieById(id);
+
+            if (!Movie.All[id].GotAllInfo)
+            {
+                Movie.All[id] = await SearchEngine.SearchMovieById(id);
+            }
+
+            Movie movie = Movie.All[id];
             PrintMovieValues(movie);
-            panel_movieData.Visible = true;
+      
         }
 
         void PrintMovieValues(Movie movie)
         {
-            
-            //pctrBox_poster.ImageLocation = $"https://www.themoviedb.org/t/p/w1280{movie.poster_path}";
-
+            pctrBox_poster.Image = movie.poster_image != null ? movie.poster_image : pctrBox_poster.ErrorImage;
             label_Title.Text = $"{movie.title}";
-            label_rating.Text = $"Rating: {movie.vote_average}%";
-            label_ReleaseDate.Text = $"Release date: {movie.release_date}";
-            label_Runtime.Text = $"Runtime: {movie.runtime} min";
+            label_rating.Text = $"Rating: {(movie.vote_count > 0 ? $"{movie.vote_average}%" : "(NR)")}";
+            label_ReleaseDate.Text = $"Release date: {(movie.release_date.Length != 0 ? $"{movie.release_date} ({movie.status})" : "(Unknown)")}";
+            label_Runtime.Text = $"Runtime: {(movie.runtime > 0 ? $"{movie.runtime} min" : "(Unknown)")}";
             label_orgLanguage.Text = $"Original language: {movie.original_language}";
+            link_homepage.Text = $"Homepage: {movie.homepage}";
+            link_poster.Text = $"Poster: {movie.poster_path}";
             rtb_overview.Text = movie.overview;
-
-            if (images.TryGetValue(Convert.ToInt32(movie.id), out Image image))
-            {
-                pctrBox_poster.Image = image;
-            }
-            else
-            {
-                pctrBox_poster.Image = pctrBox_poster.ErrorImage;
-            }
-
-
+            panel_movieData.Visible = true;
         }
 
 
 
         void ResetResultTextBox()
         {
-            //rtb_SrchFindings.Text = "";
+
             dataGrid_srchResults.Rows.Clear();
 
         }
@@ -166,28 +168,14 @@ namespace MovieMiner
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-             string selected = dataGrid_srchResults.SelectedRows[0].Cells["ID"].Value.ToString();
+             int id = Convert.ToInt32(dataGrid_srchResults.SelectedRows[0].Cells["ID"].Value);
 
-
-            _ =DisplaySelectedMovie(selected);
+           _ =DisplaySelectedMovie(id);
 
             
 
         }
 
-        internal async Task LoadImage(Movie m)
-        {
-            WebRequest request = WebRequest.Create($"https://www.themoviedb.org/t/p/w1280{m.poster_path}");
-            
-            using (var response = request.GetResponse())
-            {
-                using (var str = response.GetResponseStream())
-                {
-                    images.Add(m.id, Bitmap.FromStream(str));
-                }
-
-            }
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -205,6 +193,16 @@ namespace MovieMiner
         }
 
         private void label_ReleaseDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_prvsPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_nxtPage_Click(object sender, EventArgs e)
         {
 
         }
