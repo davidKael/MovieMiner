@@ -75,8 +75,17 @@ namespace MovieMiner
 
                     case 1:
                        
-                        SearchResults result = await SearchEngine.SearchMoviesByTitle(input);
+                        SearchResults result = await SearchEngine.SearchMoviesByTitle(input, 1);
                         label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
+                        if(result.page < result.total_pages)
+                        {
+                            btn_nxtPage.Visible = true;
+                        }
+                        if (result.page > 1)
+                        {
+                            btn_nxtPage.Visible = true;
+                        }
+
                         if (result != null && result.results.Count > 0)
                         {
 
@@ -119,6 +128,36 @@ namespace MovieMiner
             }
 
         }
+        async Task TurnPage(int page)
+        {
+            
+            dataGrid_srchResults.Rows.Clear();
+            SearchResults result = await SearchEngine.SearchMoviesByTitle(SearchResults.CurrSearchWord, page);
+            label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
+
+            btn_nxtPage.Visible = result.page < result.total_pages;
+            btn_prvsPage.Visible = result.page > 1;
+ 
+
+            if (result != null && result.results.Count > 0)
+            {
+
+                ResetResultTextBox();
+
+
+
+                foreach (Movie m in result.results)
+                {
+                    dataGrid_srchResults.Rows.Add(new object[] { m.id, m.title, m.release_date });
+                }
+
+                await DisplaySelectedMovie(result.results[0].id);
+                dataGrid_srchResults.Visible = true;
+                label_searchResultMessage.Text = $"{result.total_results} movies found.";
+
+                return;
+            }
+        }
 
         async Task DisplaySelectedMovie(int id)
         {
@@ -144,6 +183,14 @@ namespace MovieMiner
             link_homepage.Text = $"Homepage: {movie.homepage}";
             link_poster.Text = $"Poster: {movie.poster_path}";
             rtb_overview.Text = movie.overview;
+            if (string.IsNullOrEmpty(rtb_overview.Text) || string.IsNullOrWhiteSpace(rtb_overview.Text))
+            {
+                rtb_overview.Visible = false;
+            }
+            else
+            {
+                rtb_overview.Visible = true;
+            }
             panel_movieData.Visible = true;
         }
 
@@ -199,12 +246,12 @@ namespace MovieMiner
 
         private void btn_prvsPage_Click(object sender, EventArgs e)
         {
-
+            _=TurnPage(SearchResults.CurrPage - 1);
         }
 
         private void btn_nxtPage_Click(object sender, EventArgs e)
         {
-
+            _=TurnPage(SearchResults.CurrPage + 1);
         }
     }
 }

@@ -254,7 +254,7 @@ namespace MovieMiner
             this.link_poster.Size = new System.Drawing.Size(459, 25);
             this.link_poster.TabIndex = 17;
             this.link_poster.TabStop = true;
-            this.link_poster.Text = "Poster: https://www.youtube.com/";
+            this.link_poster.Text = "Poster: /posterlink/";
             this.link_poster.UseCompatibleTextRendering = true;
             // 
             // link_homepage
@@ -267,7 +267,7 @@ namespace MovieMiner
             this.link_homepage.Size = new System.Drawing.Size(459, 25);
             this.link_homepage.TabIndex = 16;
             this.link_homepage.TabStop = true;
-            this.link_homepage.Text = "Homepage: www.hej.com";
+            this.link_homepage.Text = "Homepage: www.website.com";
             this.link_homepage.UseCompatibleTextRendering = true;
             // 
             // rtb_overview
@@ -398,7 +398,6 @@ namespace MovieMiner
             this.label_pageCount.Name = "label_pageCount";
             this.label_pageCount.Size = new System.Drawing.Size(115, 39);
             this.label_pageCount.TabIndex = 8;
-            this.label_pageCount.Text = "Page 123\r\nof 1233";
             this.label_pageCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_prvsPage
@@ -410,6 +409,7 @@ namespace MovieMiner
             this.btn_prvsPage.TabIndex = 7;
             this.btn_prvsPage.Text = "Previous Page";
             this.btn_prvsPage.UseVisualStyleBackColor = true;
+            this.btn_prvsPage.Visible = false;
             this.btn_prvsPage.Click += new System.EventHandler(this.btn_prvsPage_Click);
             // 
             // btn_nxtPage
@@ -424,6 +424,7 @@ namespace MovieMiner
             this.btn_nxtPage.TabIndex = 6;
             this.btn_nxtPage.Text = "Next Page";
             this.btn_nxtPage.UseVisualStyleBackColor = false;
+            this.btn_nxtPage.Visible = false;
             this.btn_nxtPage.Click += new System.EventHandler(this.btn_nxtPage_Click);
             // 
             // label1
