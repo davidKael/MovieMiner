@@ -81,12 +81,8 @@ namespace MovieMiner
                             return;
                         }
 
-                        btn_nxtPage.Visible = result.page < result.total_pages;
-                        btn_prvsPage.Visible = result.page > 1;
-
                         if (result != null && result.results.Count > 0)
                         {
-                            label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
                             ResetResultTextBox();
 
                             foreach (Movie m in result.results)
@@ -97,6 +93,9 @@ namespace MovieMiner
                             await DisplaySelectedMovie(result.results[0].id);
                             dataGrid_srchResults.Visible = true;
                             label_searchResultMessage.Text = $"{result.total_results} movies found.";
+                            label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
+                            btn_nxtPage.Visible = result.page < result.total_pages;
+                            btn_prvsPage.Visible = result.page > 1;
 
                             return;
 
