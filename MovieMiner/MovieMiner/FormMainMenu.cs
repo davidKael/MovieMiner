@@ -47,10 +47,13 @@ namespace MovieMiner
                         {
                             ResetResultTextBox();
 
-                            PrintMovieValues(movie);
-                            images.Clear();
-                           _= LoadImage(movie);
                             
+                           images.Clear();
+                           await LoadImage(movie);
+                           await DisplaySelectedMovie(movie.id.ToString());
+
+                            label_searchResultMessage.Text = "";
+
 
                         }
                         else
