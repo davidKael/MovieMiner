@@ -14,8 +14,6 @@ namespace MovieMiner
 {
     public partial class FormMainMenu : Form
     {
-
-
         public FormMainMenu()
         {
             InitializeComponent();
@@ -45,6 +43,7 @@ namespace MovieMiner
                 switch (cb_SrchType.SelectedIndex)
                 {
                     case 0:
+
                         if(int.TryParse(input, out int id))
                         {
                             Movie movie = await SearchEngine.SearchMovieById(id);
@@ -56,21 +55,18 @@ namespace MovieMiner
 
                                 label_searchResultMessage.Text = "";
                                 return;
-
-
                             }
                             else
                             {
                                 label_searchResultMessage.Text = "Nothing found...";
                             
                             }
+
                         }
                         else
                         {
                             label_searchResultMessage.Text = "ID Invalid";
-
                         }
-
                         break;
 
                     case 1:
@@ -79,30 +75,19 @@ namespace MovieMiner
                         
                         if(result == null)
                         {
-
-                            //label_searchResultMessage.Text = "Api-key is invalid...";
                             FormHandler.nextForm = "FormEnterAPI";
                             Close();
 
                             return;
-
                         }
 
-                        if(result.page < result.total_pages)
-                        {
-                            btn_nxtPage.Visible = true;
-                        }
-                        if (result.page > 1)
-                        {
-                            btn_nxtPage.Visible = true;
-                        }
+                        btn_nxtPage.Visible = result.page < result.total_pages;
+                        btn_prvsPage.Visible = result.page > 1;
 
                         if (result != null && result.results.Count > 0)
                         {
                             label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
                             ResetResultTextBox();
-
-
 
                             foreach (Movie m in result.results)
                             {
@@ -125,41 +110,30 @@ namespace MovieMiner
 
                     default:
                         label_searchResultMessage.Text = "Search metod not chosen...";
-
-
                         break;
-
                 }
             }
-
             else
             {
                 label_searchResultMessage.Text = "Nothing found...";
-
             }
-
         }
+
+
         async Task TurnPage(int page)
-        {
-            
+        {            
             dataGrid_srchResults.Rows.Clear();
             SearchResults result = await SearchEngine.SearchMoviesByTitle(SearchResults.CurrSearchWord, page);
             label_pageCount.Text = $"Page {result.page} \nof {result.total_pages} pages";
-
             btn_nxtPage.Visible = result.page < result.total_pages;
             btn_prvsPage.Visible = result.page > 1;
- 
 
             if (result != null && result.results.Count > 0)
             {
-
                 ResetResultTextBox();
 
-
-
                 foreach (Movie m in result.results)
-                {
-                    
+                {                    
                     dataGrid_srchResults.Rows.Add(new object[] { m.id, m.title, m.release_date });
                 }
 
@@ -173,15 +147,13 @@ namespace MovieMiner
 
         async Task DisplaySelectedMovie(int id)
         {
-
             if (!Movie.All[id].GotAllInfo)
             {
                 Movie.All[id] = await SearchEngine.SearchMovieById(id);
             }
 
             Movie movie = Movie.All[id];
-            PrintMovieValues(movie);
-      
+            PrintMovieValues(movie);     
         }
 
         void PrintMovieValues(Movie movie)
@@ -197,9 +169,6 @@ namespace MovieMiner
                     {
                         genre += ", ";
                     }
-
-
-
                 }
             }
             else
@@ -217,6 +186,7 @@ namespace MovieMiner
             link_homepage.Text = $"Homepage: {movie.homepage}";
             link_poster.Text = $"Poster: {movie.poster_path}";
             rtb_overview.Text = movie.overview;
+
             if (string.IsNullOrEmpty(rtb_overview.Text) || string.IsNullOrWhiteSpace(rtb_overview.Text))
             {
                 rtb_overview.Visible = false;
@@ -225,26 +195,14 @@ namespace MovieMiner
             {
                 rtb_overview.Visible = true;
             }
+
             panel_movieData.Visible = true;
         }
 
 
-
         void ResetResultTextBox()
         {
-
             dataGrid_srchResults.Rows.Clear();
-
-        }
-
-        private void cb_SrchType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -252,30 +210,6 @@ namespace MovieMiner
              int id = Convert.ToInt32(dataGrid_srchResults.SelectedRows[0].Cells["ID"].Value);
 
            _ =DisplaySelectedMovie(id);
-
-            
-
-        }
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_orgLanguage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_searchResultMessage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_ReleaseDate_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_prvsPage_Click(object sender, EventArgs e)
@@ -286,11 +220,6 @@ namespace MovieMiner
         private void btn_nxtPage_Click(object sender, EventArgs e)
         {
             _=TurnPage(SearchResults.CurrPage + 1);
-        }
-
-        private void FormMainMenu_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
         }
     }
 }

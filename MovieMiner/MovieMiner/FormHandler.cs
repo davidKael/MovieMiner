@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace MovieMiner
 {
-    static class FormHandler
+    internal static class FormHandler
     {
         public static string nextForm;
 
-        public static void RunForms()
+        public static void RunApp()
         {
             bool isClosingApp = false;
 
@@ -32,20 +27,17 @@ namespace MovieMiner
                         nextForm = "";
                         Application.Run(new FormEnterAPI());
                         break;
+
                     case "FormMainMenu":
                         nextForm = "";
                         Application.Run(new FormMainMenu());
                         break;
+
                     default:
                         isClosingApp = true;
                         break;
-
                 }
             }
-
-              
-
-
         }
     }
 }

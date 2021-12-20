@@ -105,8 +105,7 @@ namespace MovieMiner
             this.cb_SrchType.Location = new System.Drawing.Point(1069, 4);
             this.cb_SrchType.Name = "cb_SrchType";
             this.cb_SrchType.Size = new System.Drawing.Size(116, 28);
-            this.cb_SrchType.TabIndex = 3;
-            this.cb_SrchType.SelectedIndexChanged += new System.EventHandler(this.cb_SrchType_SelectedIndexChanged);
+            this.cb_SrchType.TabIndex = 3;            
             // 
             // pctrBox_poster
             // 
@@ -300,7 +299,6 @@ namespace MovieMiner
             this.label_orgLanguage.Size = new System.Drawing.Size(461, 25);
             this.label_orgLanguage.TabIndex = 11;
             this.label_orgLanguage.Text = "Original Language: En";
-            this.label_orgLanguage.Click += new System.EventHandler(this.label_orgLanguage_Click);
             // 
             // label_rating
             // 
@@ -337,7 +335,6 @@ namespace MovieMiner
             this.label_Genres.Size = new System.Drawing.Size(461, 25);
             this.label_Genres.TabIndex = 8;
             this.label_Genres.Text = "Genres: Action, Horror";
-            this.label_Genres.Click += new System.EventHandler(this.label1_Click);
             // 
             // label_ReleaseDate
             // 
@@ -350,7 +347,6 @@ namespace MovieMiner
             this.label_ReleaseDate.Size = new System.Drawing.Size(461, 25);
             this.label_ReleaseDate.TabIndex = 7;
             this.label_ReleaseDate.Text = "Release date: 2020-02-12";
-            this.label_ReleaseDate.Click += new System.EventHandler(this.label_ReleaseDate_Click);
             // 
             // label_searchResultMessage
             // 
@@ -361,7 +357,6 @@ namespace MovieMiner
             this.label_searchResultMessage.Name = "label_searchResultMessage";
             this.label_searchResultMessage.Size = new System.Drawing.Size(408, 25);
             this.label_searchResultMessage.TabIndex = 13;
-            this.label_searchResultMessage.Click += new System.EventHandler(this.label_searchResultMessage_Click);
             // 
             // panel2
             // 
@@ -462,7 +457,6 @@ namespace MovieMiner
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movie Miner - Main Menu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMainMenu_FormClosed);
             this.Load += new System.EventHandler(this.FormMainMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pctrBox_poster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_srchResults)).EndInit();
