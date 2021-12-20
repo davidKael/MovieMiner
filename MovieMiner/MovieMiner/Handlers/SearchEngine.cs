@@ -26,7 +26,7 @@ namespace MovieMiner
         {
             string uri = $@"{url}3/movie/{id}?api_key={key}";
             var response = await client.GetAsync(uri);
-
+             
             try 
             { 
                 response.EnsureSuccessStatusCode();
